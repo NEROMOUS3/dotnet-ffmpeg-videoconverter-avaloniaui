@@ -1,10 +1,13 @@
-using Avalonia.Controls;
+using System;
 using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
+using FFmpegAvaloniaUI.FileExplorer;
 using FFmpegAvaloniaUI.PowerShell;
+using FFmpegAvaloniaUI.WindowsSelector;
 
 namespace FFmpegAvaloniaUI;
 
-public partial class MainWindow : Window
+public partial class MainWindow : Avalonia.Controls.Window
 {
     private IAsyncCommandExecutor _asyncCommandExecutor;
     
@@ -13,16 +16,30 @@ public partial class MainWindow : Window
         _asyncCommandExecutor = new AsyncCommandPowerShellExecutor();
         InitializeComponent();
     }
-
-    private void PShellCall_OnClick(object? sender, RoutedEventArgs e)
+    
+    private void InitializeComponent()
     {
-        if(_asyncCommandExecutor.IsRunning) return;
-        _asyncCommandExecutor.ExecuteCommand(ShellConst.GetNetTCPConnection);
+        AvaloniaXamlLoader.Load(this);
     }
+    
 
-    private void FFmpegInstall_OnClick(object? sender, RoutedEventArgs e)
+    private void InstallFFMpeg_OnClick(object? sender, RoutedEventArgs e)
     {
         if(_asyncCommandExecutor.IsRunning) return;
         _asyncCommandExecutor.ExecuteCommand(ShellConst.InstallFFmpeg);
+    }
+    
+    private void UninstallFFMpeg_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if(_asyncCommandExecutor.IsRunning) return;
+        _asyncCommandExecutor.ExecuteCommand(ShellConst.InstallFFmpeg);
+    }
+
+    private void SelectFileButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+       var file =  WinFormsDialogHelper.ShowOpenFileDialog();
+       var isPathSafe = WinPathUtils.IsPathSafe(file);
+       Console.WriteLine(file + " "+ isPathSafe);
+       Console.WriteLine(WinPathUtils.GetDirectory(file));
     }
 }

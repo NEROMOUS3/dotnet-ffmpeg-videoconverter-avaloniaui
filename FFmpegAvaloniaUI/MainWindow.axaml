@@ -12,18 +12,18 @@
 
     <Panel Height="450" Width="450" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <Button x:Name="PShellCall" HorizontalAlignment="Stretch" 
-                VerticalAlignment="Center" 
-                Background="Blue" 
+        <Button x:Name="SelectFileButton" HorizontalAlignment="Stretch" 
+                VerticalAlignment="Top" 
+                Background="Yellow" 
                 Foreground="Black"
-                Click="PShellCall_OnClick">
-            <TextBlock HorizontalAlignment="Center" FontSize="24">NetTCPConnection test</TextBlock>
+                Click="SelectFileButton_OnClick">
+            <TextBlock HorizontalAlignment="Center" FontSize="24">Select file test</TextBlock>
         </Button>
         <Button x:Name="FFmpegInstall" HorizontalAlignment="Stretch" 
                 VerticalAlignment="Bottom" 
                 Background="Green" 
                 Foreground="Black"
-                Click = "FFmpegInstall_OnClick">
+                Click = "InstallFFMpeg_OnClick">
             <TextBlock HorizontalAlignment="Center" FontSize="24">Install FFmpeg</TextBlock>
         </Button>
     </Panel>
