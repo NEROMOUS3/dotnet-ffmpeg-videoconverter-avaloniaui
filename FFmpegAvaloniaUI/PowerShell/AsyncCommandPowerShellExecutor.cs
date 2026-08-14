@@ -19,20 +19,20 @@ public class AsyncCommandPowerShellExecutor: IAsyncCommandExecutor, IDisposable
 
         try
         {
-            using Process process = new Process();
-            process.StartInfo.FileName = ShellConst.PowerShellExecutor;
+            using Process _process = new Process();
+            _process.StartInfo.FileName = ShellConst.PowerShellExecutor;
             var encodedCommand = Convert.ToBase64String(System.Text.Encoding.Unicode.GetBytes(command));
-            process.StartInfo.Arguments = $"{ShellConst.NoExit} {ShellConst.EncodedCommand} {encodedCommand}";
-            process.StartInfo.UseShellExecute = true;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+            _process.StartInfo.Arguments = $"{ShellConst.NoExit} {ShellConst.EncodedCommand} {encodedCommand}";
+            _process.StartInfo.UseShellExecute = true;
+            _process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 
-            process.StartInfo.RedirectStandardOutput = false;
-            process.StartInfo.RedirectStandardError = false;
-            process.StartInfo.RedirectStandardInput = false;
+            _process.StartInfo.RedirectStandardOutput = false;
+            _process.StartInfo.RedirectStandardError = false;
+            _process.StartInfo.RedirectStandardInput = false;
 
-            process.Start();
+            _process.Start();
                 
-            await process.WaitForExitAsync(cancellationToken);
+            await _process.WaitForExitAsync(cancellationToken);
         }
         finally
         {

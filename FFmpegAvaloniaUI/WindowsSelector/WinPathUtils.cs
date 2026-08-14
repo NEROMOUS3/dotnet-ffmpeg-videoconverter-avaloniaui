@@ -6,20 +6,28 @@ public static class WinPathUtils
 {
     public static bool IsPathSafe(string filePath)
     {
+        if(string.IsNullOrWhiteSpace(filePath)) return false;
         char[] invalidChars = Path.GetInvalidPathChars();
         if (filePath.IndexOfAny(invalidChars) >= 0)
             return false;
         
         string fullPath = Path.GetFullPath(filePath);
         
-        if (!File.Exists(fullPath))
-            return false;
-    
-        return true;
+        if(!DirectoryExists(fullPath)) return false;
+        return File.Exists(fullPath);
     }
     
-    public static string? GetDirectory(string filePath)
+    public static string GetDirectory(string path)
     {
-        return IsPathSafe(filePath) ? Path.GetDirectoryName(filePath) : string.Empty;
+        if(string.IsNullOrWhiteSpace(path)) return string.Empty;
+        var directoryPath = Path.GetDirectoryName(path);
+        if(directoryPath == null) return string.Empty;
+        return directoryPath;
+    }
+    
+    public static bool DirectoryExists(string path)
+    {
+        if(string.IsNullOrWhiteSpace(path)) return true;
+        return Directory.Exists(GetDirectory(path));
     }
 }

@@ -2,29 +2,109 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
-        Width="450"
-        Height="450"
+        mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="640"
+        Width="480"
+        Height="640"
         x:Class="FFmpegAvaloniaUI.MainWindow"
         CanResize="False"
         WindowStartupLocation="CenterScreen"
         Title="FFmpeg converter by NEROMOUS3">
 
-    <Panel Height="450" Width="450" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
-
-        <Button x:Name="SelectFileButton" HorizontalAlignment="Stretch" 
-                VerticalAlignment="Top" 
-                Background="Yellow" 
-                Foreground="Black"
-                Click="SelectFileButton_OnClick">
-            <TextBlock HorizontalAlignment="Center" FontSize="24">Select file test</TextBlock>
-        </Button>
-        <Button x:Name="FFmpegInstall" HorizontalAlignment="Stretch" 
-                VerticalAlignment="Bottom" 
-                Background="Green" 
-                Foreground="Black"
-                Click = "InstallFFMpeg_OnClick">
-            <TextBlock HorizontalAlignment="Center" FontSize="24">Install FFmpeg</TextBlock>
-        </Button>
-    </Panel>
+   <Grid RowDefinitions=" Auto, *, Auto">
+       <StackPanel Grid.Row="0">
+           <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Source/Result files</Label>
+           <Button x:Name="SelectSourceButton" Click="SelectSourceFile">Select file</Button>
+           <Label x:Name="SourcePathLabel">Selected File:</Label>
+           <Button x:Name="SelectOutputButton" Click="SelectOutputDirectory">Select output directory</Button>
+           <TextBox x:Name="ResultNameTextBox" PlaceholderText="Entry result file name (default: Output)"/>
+           <Label x:Name="OutputPathLabel">Result path:</Label>
+           <Label></Label>
+       </StackPanel>
+       
+       <StackPanel Grid.Row="1" Background="Black">
+           <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Converter Setup</Label>
+           <StackPanel  Orientation="Horizontal" Spacing="20">
+               <CheckBox x:Name="UseGpuCheckBox" IsChecked="True">Use GPU</CheckBox>
+               <CheckBox x:Name="FastStartCheckBox" IsChecked="False">Fast Start</CheckBox>
+               <CheckBox x:Name="MultipassCheckBox" IsChecked="False">Multipass</CheckBox>
+           </StackPanel>
+           
+           <StackPanel Orientation="Horizontal" Spacing="20">
+               <StackPanel>
+                   <Label >Video codec</Label>
+                   <ComboBox x:Name="VCodec" SelectedIndex="0">
+                       <ComboBoxItem>libx264</ComboBoxItem>
+                       <ComboBoxItem>libx265</ComboBoxItem>
+                       <ComboBoxItem>hevc_nvenc (Use GPU: NVIDIA)</ComboBoxItem>
+                       <ComboBoxItem>hevc_amf (Use GPU: AMD)</ComboBoxItem>
+                       <ComboBoxItem>source</ComboBoxItem>
+                   </ComboBox>
+               </StackPanel>
+               <StackPanel>
+                   <Label >Result format:</Label>
+                   <ComboBox x:Name="OutputFormat" SelectedIndex="0">
+                       <ComboBoxItem>.mp4</ComboBoxItem>
+                       <ComboBoxItem>.mkv</ComboBoxItem>
+                       <ComboBoxItem>.avi</ComboBoxItem>
+                       <ComboBoxItem>.mov</ComboBoxItem>
+                   </ComboBox>
+               </StackPanel>
+           </StackPanel>
+           
+           <StackPanel Orientation="Horizontal" Spacing="20">
+               <StackPanel>
+                   <Label >Audio codec:</Label>
+                   <ComboBox  x:Name="ACodec" SelectedIndex="0">
+                       <ComboBoxItem>aac</ComboBoxItem>
+                       <ComboBoxItem>source</ComboBoxItem>
+                   </ComboBox>
+               </StackPanel>
+               <StackPanel>
+                   <Label >Audio bitrate:</Label>
+                   <ComboBox x:Name="ABitrate" SelectedIndex="0">
+                       <ComboBoxItem>320k</ComboBoxItem>
+                       <ComboBoxItem>128k</ComboBoxItem>
+                       <ComboBoxItem>source</ComboBoxItem>
+                   </ComboBox>
+               </StackPanel>
+           </StackPanel>
+           
+           <Label >Compression level (recommended 18-26):</Label>
+           <NumericUpDown x:Name="CompressionLevelSelector" Value="20" Increment="1"
+                          FormatString="0"
+                          Minimum="0" Maximum="100"/>
+           
+           <Label >Preset (recommended medium/slow or p4/p6):</Label>
+           <ComboBox x:Name="PresetSelector" SelectedIndex="3">
+               <ComboBoxItem>ultrafast</ComboBoxItem>
+               <ComboBoxItem>fast</ComboBoxItem>
+               <ComboBoxItem>medium</ComboBoxItem>
+               <ComboBoxItem>slow</ComboBoxItem>
+               <ComboBoxItem>veryslow</ComboBoxItem>
+               <ComboBoxItem>p1 fast (NVIDIA ONLY)</ComboBoxItem>
+               <ComboBoxItem>p4 medium (NVIDIA ONLY)</ComboBoxItem>
+               <ComboBoxItem>p6 slow (NVIDIA ONLY)</ComboBoxItem>
+               <ComboBoxItem>p7 ultraslow (NVIDIA ONLY)</ComboBoxItem>
+           </ComboBox>
+          
+           <Label></Label>
+           <Button Styles="" HorizontalAlignment="Center" Width="400" Background="Green" Click="RunVideoConverter">
+               <TextBlock HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">RUN</TextBlock>
+           </Button>
+       </StackPanel>
+       
+       <StackPanel Margin="0,0,0,25" Grid.Row="2">
+           <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">FFmpeg installation</Label>
+           <Label HorizontalAlignment="Center" FontSize="12" Foreground="Red">Click install button if you never install FFmpeg by yourself</Label>
+           <Label></Label>
+           <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="20">
+               <Button Width="200" Background="Blue" Click="InstallFFMpeg_OnClick">
+                   <TextBlock HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Install</TextBlock>
+               </Button>
+               <Button  Width="200" Background="Red" Click="UninstallFFMpeg_OnClick">
+                   <TextBlock HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Uninstall</TextBlock>
+               </Button>
+           </StackPanel>
+       </StackPanel>
+   </Grid>
 </Window>
