@@ -5,7 +5,6 @@ public static class FFmpegOptionSetup
     public static string[] AudioCodecSetup { get;} =
     [
         "aac",
-        "copy"
     ];
 
     public static string[] VideoCodecSetup { get;} =
@@ -14,7 +13,6 @@ public static class FFmpegOptionSetup
         "libx265",
         "hevc_nvenc",
         "hevc_amf",
-        "copy"
     ];
 
     public static string[] PresetSetup { get;} =
@@ -34,7 +32,6 @@ public static class FFmpegOptionSetup
     [
         "320k",
         "128k",
-        "copy"
     ];
 
     public static string[] OutputFormatSetup { get;} =

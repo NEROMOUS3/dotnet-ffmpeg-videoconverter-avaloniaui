@@ -37,7 +37,6 @@
                        <ComboBoxItem>libx265</ComboBoxItem>
                        <ComboBoxItem>hevc_nvenc (Use GPU: NVIDIA)</ComboBoxItem>
                        <ComboBoxItem>hevc_amf (Use GPU: AMD)</ComboBoxItem>
-                       <ComboBoxItem>source</ComboBoxItem>
                    </ComboBox>
                </StackPanel>
                <StackPanel>
@@ -56,7 +55,6 @@
                    <Label >Audio codec:</Label>
                    <ComboBox  x:Name="ACodec" SelectedIndex="0">
                        <ComboBoxItem>aac</ComboBoxItem>
-                       <ComboBoxItem>source</ComboBoxItem>
                    </ComboBox>
                </StackPanel>
                <StackPanel>
@@ -64,7 +62,6 @@
                    <ComboBox x:Name="ABitrate" SelectedIndex="0">
                        <ComboBoxItem>320k</ComboBoxItem>
                        <ComboBoxItem>128k</ComboBoxItem>
-                       <ComboBoxItem>source</ComboBoxItem>
                    </ComboBox>
                </StackPanel>
            </StackPanel>
