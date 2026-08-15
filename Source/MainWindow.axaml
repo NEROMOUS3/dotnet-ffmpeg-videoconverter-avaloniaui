@@ -90,8 +90,8 @@
            </Button>
        </StackPanel>
        
-       <StackPanel Margin="0,0,0,25" Grid.Row="2">
-           <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">FFmpeg installation</Label>
+       <StackPanel Margin="0,0,0,20" Grid.Row="2">
+           <Label HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">FFmpeg installation</Label>
            <Label HorizontalAlignment="Center" FontSize="12" Foreground="Red">Click install button if you never install FFmpeg by yourself</Label>
            <Label></Label>
            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="20">

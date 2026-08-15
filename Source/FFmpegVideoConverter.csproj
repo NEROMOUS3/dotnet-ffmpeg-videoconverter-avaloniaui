@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <UseWindowsForms>true</UseWindowsForms>
+        <RootNamespace>FFmpegAvaloniaUI</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
