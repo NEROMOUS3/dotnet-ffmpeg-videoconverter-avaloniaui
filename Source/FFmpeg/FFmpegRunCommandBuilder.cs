@@ -20,7 +20,7 @@ public class FFmpegRunCommandBuilder
         resultCommand.Append(" -b:a " + setup.AudioBitrate);
         resultCommand.Append(" -pix_fmt yuv420p");
         if(setup.Multipass)
-            resultCommand.Append(" -multupass fullres");
+            resultCommand.Append(" -multipass fullres");
         if (setup.FastStart)
             resultCommand.Append(" -movflags +faststart");
         resultCommand.Append(" "+outputName);
